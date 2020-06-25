@@ -1,0 +1,19 @@
+{
+  "name": "formm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@material-ui/icons": "^4.9.1",
+    "material-ui-icons": "^1.0.0-beta.36",
+    "material-ui-responsive-drawer": "^1.19.4",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

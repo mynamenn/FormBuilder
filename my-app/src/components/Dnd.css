@@ -1,0 +1,23 @@
+.drag-container {
+    text-align: center;
+  }
+  
+.inProgress {
+    position: relative;
+    width: 200px;
+    height: 200px;
+}
+
+.droppable{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    
+}
+
+.draggable{
+    width: 4em;
+    height: 3em;
+}
+
+
