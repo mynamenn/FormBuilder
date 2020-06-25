@@ -35,7 +35,12 @@ const Homepage = ({status}) => {
                 <Col>
                     {items
                         .filter(i => i.status === status)
-                        .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={status} />)
+                        .map((i, idx) => 
+                        <div>
+                           <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={status} /> 
+                        
+                        </div>
+                        )
                     }
                 </Col>
             </DropWrapper>

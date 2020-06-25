@@ -26,6 +26,7 @@ import { data, statuses } from "../data";
 import '../style/index.css';
 import Homepage from "../pages/Homepage";
 import '../style/index.css';
+import DrawerElements from './DrawerElements';
 
 
 class Menu extends React.Component {
@@ -35,18 +36,7 @@ class Menu extends React.Component {
   onDragOver = (event) => {
     event.preventDefault();
   }
-  onDropDown = (event) => {
-    var display = document.getElementById("dropdown-container").style.display;
-    display === 'none' ? document.getElementById("dropdown-container").style.display = 'block' : document.getElementById("dropdown-container").style.display = 'none';
-  }
-
-  onDrop2 = (item, monitor, status) => {
-    const mapping = statuses.find(si => si.status === status);
-
-    let items = this.state.items.filter(i => i.id !== item.id).concat({ ...item, status, icon: mapping.icon });
-    this.setState(state => ({ items: items }))
-  };
-
+  
   // Open drawer when screen width is small enough
   handleDrawerToggle = () => {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
@@ -62,102 +52,12 @@ class Menu extends React.Component {
 
   state = {
     mobileOpen: false,
-    fields: [
-      { fieldName: "Name", type: "atTheSide", backgroundColor: "red" },
-      { fieldName: "Email", type: "inForm", backgroundColor: "blue" },
-    ],
   };
 
 
   render() {
 
-    var fields = {
-      atTheSide: [],
-      inForm: []
-    }
-
-    // Loops thru each field element and return div
-    this.state.fields.forEach((field) => {
-      if (field.type === 'atTheSide') {
-        fields[field.type].push(
-          <div onDragStart={(event) => this.onDragStart(event, field.fieldName)}
-            draggable
-            className="draggable"
-            style={{ backgroundColor: field.backgroundColor }}>
-            {field.fieldName}
-          </div>
-        );
-      }
-      else {
-        fields[field.type].push(
-          <div onDragStart={(event) => this.onDragStart(event, field.fieldName)}
-            draggable
-            className="draggable"
-            style={{ backgroundColor: field.backgroundColor }}>
-            <div>
-              <label for={field.fieldName}>{field.fieldName}</label>
-              <input type="text" id={field.fieldName} name={field.fieldName} placeholder="Please enter your name" required />
-            </div>
-          </div>
-        );
-      }
-
-    });
-
-
     const { classes, theme } = this.props;
-
-    // Contains elements of drawer
-    const drawer = (
-
-      <div class="sidenav">
-        <div className={classes.toolbar} />
-        <div className="drag-container">
-          <h2 class="formbuilder-head">Form Builder</h2>
-          <div className="atTheSide"
-            onDragOver={(event) => this.onDragOver(event)}
-            onDrop={(event) => { this.onDrop(event, "atTheSide") }}>
-            <Homepage status="Sidebar" />
-            <AddFieldBtn handleAddField={this.handleAddField}></AddFieldBtn>
-
-          </div>
-
-          <button class="dropdown-btn" onClick={this.onDropDown}>Fields</button>
-          <div id="dropdown-container">
-            <Homepage status="Sidebar" />
-          </div>
-
-        </div>
-
-        <Divider />
-        {fields.atTheSide}
-        <List>
-          {['Saved Forms', 'Help'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-      </div>
-
-    );
-
-    const newDrawer = (
-
-      <div class="sidenav">
-        <h2 className="formBuilderHead">Form Builder</h2>
-        <button class="dropdown-btn" onClick={this.onDropDown}>Fields
-        <i class="fa fa-caret-down">🔽</i></button>
-        <div id="dropdown-container">
-          <Homepage status="Sidebar" />
-        </div>
-
-        <a href="#about">Saved forms</a>
-        <a href="#about">Help</a>
-      </div>
-    );
 
     return (
       <div className={classes.root}>
@@ -191,7 +91,7 @@ class Menu extends React.Component {
                 paper: classes.drawerPaper,
               }}
             >
-              {newDrawer}
+              <DrawerElements></DrawerElements>
             </Drawer>
           </Hidden>
 
@@ -203,20 +103,13 @@ class Menu extends React.Component {
               variant="permanent"
               open
             >
-              {newDrawer}
+              <DrawerElements></DrawerElements>
             </Drawer>
           </Hidden>
         </nav>
 
         <main className={classes.content}>
           <Homepage status="Form" />
-
-          <div className={classes.toolbar} />
-          <div className="droppable"
-            onDragOver={(event) => this.onDragOver(event)}
-            onDrop={(event) => this.onDrop(event, "inForm")}>
-            {fields.inForm}
-          </div>
         </main>
       </div>
     );
