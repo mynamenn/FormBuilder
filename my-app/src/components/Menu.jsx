@@ -73,7 +73,7 @@ class Menu extends React.Component {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
-              Instant Pay Form
+              💳 Instant Pay Form
             </Typography>
           </Toolbar>
         </AppBar>
@@ -109,7 +109,7 @@ class Menu extends React.Component {
         </nav>
 
         <main className={classes.content}>
-          <Homepage status="Form" />
+          <Homepage status="Form"/>
         </main>
       </div>
     );

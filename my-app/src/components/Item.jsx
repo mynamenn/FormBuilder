@@ -40,6 +40,7 @@ const Item = ({ item, index, moveItem, status}) => {
             // Item is moved
             moveItem(dragIndex, hoverIndex);
             item.index = hoverIndex;
+           
         },
     });
 
@@ -82,7 +83,7 @@ const Item = ({ item, index, moveItem, status}) => {
                 className={"item-side"}
                 onClick={onOpen}
             >
-                <label className={"item-title"} for={item.content}>{item.content}</label>
+                <label className={"item-side-title"} for={item.content}>{item.content}</label>
             </div>
             <Window
                 item={item}

@@ -86,13 +86,12 @@ select {
 }
 
 .item-side {
-    font-size: 15px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
+    margin: 1px 0px 5px 0px;
+    padding: 8px;
+    border-radius: 3px;
     z-index: 1;
-    height: 60px;
-    width: 90px;
+    height: 35px;
+    width: 220px;
     background-color: white;
 }
 
@@ -102,17 +101,14 @@ select {
 
 .item-title {
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
+    text-align: center;
 }
 
-.item-status {
-    text-align: right;
-}
-
-.color-bar {
-    width: 40px;
-    height: 10px;
-    border-radius: 5px;
+.item-side-title {
+    font-weight: 550;
+    font-size: 13px;
+    text-align: left;
 }
 
 .drop-wrapper {
@@ -197,21 +193,23 @@ select {
 
 #dropdown-container {
     display: none;
-
+    background-color: rgb(182, 206, 214);
+    padding-left: 8px;
 }
 
 .dropdown-btn{
-    padding: 6px 8px 6px 16px;
+  padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 30px;
   color: #818181;
   display: block;
   border: none;
-  background: none;
+  background-color: white;
   width: 100%;
   text-align: left;
   cursor: pointer;
   outline: none;
+  z-index: 2;
 }
 
 .sidenav{
@@ -223,8 +221,12 @@ select {
     left: 0;
     background-color: lightblue;
     overflow-x: hidden;
-    padding-top: 20px; 
+    padding-top: 0px; 
 }
+
+.sidenav a:hover, .dropdown-btn:hover {
+    color: #f1f1f1;
+  }
 
 .sidenav a, .dropdown-btn {
     padding: 6px 8px 6px 16px;
@@ -251,6 +253,8 @@ select {
     display: inline-block;
     margin: 0;
     padding: 0;
+    color: white;
     background-color: rgb(99, 99, 216);
     width:100%;
+    font-weight: lighter;
   }

@@ -23,6 +23,8 @@ const DropWrapper = ({ onDrop, children, status }) => {
         })
     });
 
+    // Passes prop(true or false) to Homepage.jsx
+    // True indicates element can be dropped onto it
     return (
         <div ref={drop} className={"drop-wrapper"}>
             {React.cloneElement(children, { isOver })}
