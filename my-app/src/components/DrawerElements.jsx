@@ -10,25 +10,26 @@ import { white, green100 } from "material-ui/styles/colors";
 import { black } from "material-ui/styles/colors";
 import { green400 } from "material-ui/styles/colors";
 import { green200 } from "material-ui/styles/colors";
+import { AddFieldBtn } from "./AddFieldBtn";
 
 const DrawerElements = () => {
 
   const onDropDown = (e) => {
     var display = document.getElementById("dropdown-container").style.display;
-    console.log(display);
-    display === 'none' ? document.getElementsByClassName("dropdown-btn")[0].style.background = green200 : document.getElementsByClassName("dropdown-btn")[0].style.background = null ;
-    display === 'none' ? document.getElementById("dropdown-container").style.display = 'block' : document.getElementById("dropdown-container").style.display = 'none';
+    display === 'block' ? document.getElementsByClassName("dropdown-btn")[0].style.background = null : document.getElementsByClassName("dropdown-btn")[0].style.background = green200 ;
+    display === 'block' ? document.getElementById("dropdown-container").style.display = 'none' : document.getElementById("dropdown-container").style.display = 'block';
 };
 
   return (
     <div class="sidenav">
-      <h2 className="formBuilderHead">Form Builder</h2>
-      <button class="dropdown-btn" onClick={onDropDown} >Fields
-        <i class="fa fa-caret-down">🔽</i></button>
+      <h2 class="formBuilderHead">Form Builder</h2>
+      <button class="dropdown-btn" onClick={onDropDown} >
+        Fields🔽
+      </button>
       <div id="dropdown-container">
         <Homepage status="Sidebar" />
       </div>
-
+      
       <a href="#about">Saved forms</a>
       <a href="#about">Help</a>
     </div>

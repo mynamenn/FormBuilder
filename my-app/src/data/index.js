@@ -1,24 +1,19 @@
 const data = [{
     id: 1,                                                 // Shown in card
-    status: "Sidebar",
+    status: "Form",
     title: "Name",
     content: "Name"       // Shown in card
 }, {
     id: 2,
-    status: "Sidebar",
+    status: "Form",
     title: "Email",
     content: "Email"
 }, {
     id: 3,
-    status: "Sidebar",
+    status: "Form",
     title: "Interest Rate",
     content: "Interest Rate"
-}, {
-    id: 4,
-    status: "Sidebar",
-    title: "Loan Amount",
-    content: "Loan Amount"
-}];
+},];
 
 const statuses = [{
     status: "Form",                       // Shown in card depending on status
@@ -28,5 +23,16 @@ const statuses = [{
     color: "#00C2E0"
 }];
 
-
+// // {
+//     id: 4,
+//     status: "Sidebar",
+//     title: "Loan Amount",
+//     content: "Loan Amount"
+// },
+// {
+//     id: 5,
+//     status: "Sidebar",
+//     title: "Period",
+//     content: "Period"
+// }
 export { data, statuses };

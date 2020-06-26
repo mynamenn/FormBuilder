@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
-
-var fieldName = "hello";
+import '../style/index.css';
 
 export function AddFieldBtn({handleAddField}) {
 
@@ -30,8 +29,8 @@ export function AddFieldBtn({handleAddField}) {
 
     return (
         <div>
-            <Button type="button" onClick={handleOpen}>
-                Add Field
+            <Button id="AddFieldBtn" type="button" onClick={handleOpen}>
+                + Add Field
             </Button>
             <Modal
                 open={open}
