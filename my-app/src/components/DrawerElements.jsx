@@ -3,7 +3,6 @@ import { useDrag, useDrop } from "react-dnd";
 import Window from "./Window";
 import ITEM_TYPE from "../data/types";
 import '../data/index';
-import Homepage from '../pages/Homepage';
 import '../style/index.css';
 import { green } from "@material-ui/core/colors";
 import { white, green100 } from "material-ui/styles/colors";
@@ -11,8 +10,10 @@ import { black } from "material-ui/styles/colors";
 import { green400 } from "material-ui/styles/colors";
 import { green200 } from "material-ui/styles/colors";
 import { AddFieldBtn } from "./AddFieldBtn";
+import NewDnd from "./newDnd";
+import initialData from "../data/initial-data";
 
-const DrawerElements = () => {
+const DrawerElements = (data) => {
 
   const onDropDown = (e) => {
     var display = document.getElementById("dropdown-container").style.display;
@@ -27,7 +28,7 @@ const DrawerElements = () => {
         Fields🔽
       </button>
       <div id="dropdown-container">
-        <Homepage status="Sidebar" />
+        <NewDnd status='Sidebar' data={data}></NewDnd>
       </div>
       
       <a href="#about">Saved forms</a>

@@ -1,22 +1,22 @@
 const data = [{
     id: 1,                                                 // Shown in card
-    status: "Form",
+    status: "Sidebar",
     title: "Name",
     content: "Name"       // Shown in card
 }, {
     id: 2,
-    status: "Form",
+    status: "Sidebar",
     title: "Email",
     content: "Email"
 }, {
     id: 3,
-    status: "Form",
+    status: "Sidebar",
     title: "Interest Rate",
     content: "Interest Rate"
 },];
 
 const statuses = [{
-    status: "Form",                       // Shown in card depending on status
+    status: "Sidebar",                       // Shown in card depending on status
     color: "#EB5A46"
 }, {
     status: "Sidebar",
