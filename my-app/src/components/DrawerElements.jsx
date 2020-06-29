@@ -13,7 +13,7 @@ import { AddFieldBtn } from "./AddFieldBtn";
 import NewDnd from "./newDnd";
 import initialData from "../data/initial-data";
 
-const DrawerElements = (data) => {
+const DrawerElements = (props) => {
 
   const onDropDown = (e) => {
     var display = document.getElementById("dropdown-container").style.display;
@@ -28,7 +28,7 @@ const DrawerElements = (data) => {
         Fields🔽
       </button>
       <div id="dropdown-container">
-        <NewDnd status='Sidebar' data={data}></NewDnd>
+        <NewDnd status='Sidebar' data={props.data}></NewDnd>
       </div>
       
       <a href="#about">Saved forms</a>

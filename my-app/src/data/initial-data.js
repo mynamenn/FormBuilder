@@ -4,6 +4,7 @@ const initialData = {
       'task-2': { id: 'task-2', content: 'Age', stats: 'main'  },
       'task-3': { id: 'task-3', content: 'Loan Amount', stats: 'Sidebar'  },
       'task-4': { id: 'task-4', content: 'Period', stats: 'Sidebar'  },
+      'task-5': { id: 'task-5', content: 'Email', stats: 'main'  },
     },
     columns: {
       'column-1': {
@@ -15,6 +16,11 @@ const initialData = {
         id: 'column-2',
         title: 'Sidebar',
         taskIds: ['task-3', 'task-4'],
+      },
+      'column-3': {
+        id: 'column-3',
+        title: 'main',
+        taskIds: ['task-5'],
       }
     },
     // Facilitate reordering of the columns

@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Column from './column';
 import '@atlaskit/css-reset';
-import { DragDropContext } from 'react-beautiful-dnd';
-import initialData from '../data/initial-data';
-import { AddFieldBtn } from './AddFieldBtn';
+
 
 export default class NewDnd extends React.Component {
 
@@ -20,6 +18,7 @@ export default class NewDnd extends React.Component {
     //         { fieldName: `${name}`, type: "atTheSide", backgroundColor: "red" }]
     //     }));
     // };
+    
     filterKey = (columnId, status) => {
         const column = this.props.data.columns[columnId];
         const tasks = column.taskIds.map(taskId => this.props.data.tasks[taskId]);
@@ -36,7 +35,7 @@ export default class NewDnd extends React.Component {
             (this.props.status === 'main') ?
                 <div>
                     {this.filterKey('column-1', 'main')}
-
+                    {this.filterKey('column-3', 'main')}
                 </div>
                 :
                 <div>
