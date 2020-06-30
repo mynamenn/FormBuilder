@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Column from './column';
 import '@atlaskit/css-reset';
 
@@ -22,11 +21,8 @@ export default class NewDnd extends React.Component {
     filterKey = (columnId, status) => {
         const column = this.props.data.columns[columnId];
         const tasks = column.taskIds.map(taskId => this.props.data.tasks[taskId]);
-        const ltasks = tasks.filter(function (obj) {
-            return obj.stats == status;
-        })
-
-        return <Column key={columnId} column={column} tasks={ltasks} />;
+        
+        return <Column key={columnId} column={column} tasks={tasks} />;
 
     }
 
@@ -35,7 +31,6 @@ export default class NewDnd extends React.Component {
             (this.props.status === 'main') ?
                 <div>
                     {this.filterKey('column-1', 'main')}
-                    {this.filterKey('column-3', 'main')}
                 </div>
                 :
                 <div>

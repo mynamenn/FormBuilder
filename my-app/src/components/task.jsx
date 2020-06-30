@@ -23,7 +23,8 @@ export default class Task extends React.Component {
           className={"item"}
         >
           <label className={"item-title"} for={this.props.task.content}>{this.props.task.content}</label>
-          <input type="text" id={this.props.task.content} name={this.props.task.content} placeholder={`Please enter your ${this.props.task.content.toLowerCase()}`} required />
+          {(this.props.task.stats === 'main') ? <input type="text" id={this.props.task.content} name={this.props.task.content} 
+          placeholder={`Please enter your ${this.props.task.content.toLowerCase()}`} required /> : null}
         </div>
       )}
     </Draggable>

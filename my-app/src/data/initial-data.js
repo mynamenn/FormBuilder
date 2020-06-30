@@ -10,18 +10,13 @@ const initialData = {
       'column-1': {
         id: 'column-1',
         title: 'Form',
-        taskIds: ['task-1', 'task-2'],
+        taskIds: ['task-1', 'task-2', 'task-5'],
       },
       'column-2': {
         id: 'column-2',
         title: 'Sidebar',
         taskIds: ['task-3', 'task-4'],
       },
-      'column-3': {
-        id: 'column-3',
-        title: 'main',
-        taskIds: ['task-5'],
-      }
     },
     // Facilitate reordering of the columns
     columnOrder: [ 'column-1', 'column-2']
