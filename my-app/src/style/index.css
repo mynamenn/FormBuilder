@@ -7,7 +7,7 @@
 }
 
 html {
-    background: rgb(0,73,191);
+    background: rgb(0, 73, 191);
     background: #F4F5F7;
 }
 
@@ -63,7 +63,6 @@ select {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
-    z-index: 1;
     background-color: rgba(122, 77, 77, 0.486);
     text-align: center;
 }
@@ -72,7 +71,6 @@ select {
     margin: 1px 0px 5px 0px;
     padding: 8px;
     border-radius: 3px;
-    z-index: 1;
     height: 35px;
     width: 220px;
     background-color: white;
@@ -101,12 +99,10 @@ select {
 }
 
 .col-wrapper {
-    display: flex;
-    flex-direction: row;
-    margin: 20px;
-    padding: 20px;
-    background-color: var(--background-color);
-    border-radius: 5px;
+    margin: 8px;
+    border: 3px solid lightgrey;
+    border-radius: 2px;
+    min-height: 150px;
 }
 
 .col-header {
@@ -154,7 +150,8 @@ select {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.5);;
+    background-color: rgba(0, 0, 0, 0.5);
+    ;
 }
 
 .close-btn-ctn {
@@ -182,38 +179,38 @@ select {
     text-align: center;
 }
 
-.dropdown-btn{
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 30px;
-  color: #818181;
-  display: block;
-  border: none;
-  background-color: white;
-  width: 100%;
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-  z-index: 2;
+.dropdown-btn {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 30px;
+    color: #818181;
+    display: block;
+    border: none;
+    background-color: white;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
 }
 
-.sidenav{
+.sidenav {
     height: 100%;
     width: 240px;
     position: fixed;
-    z-index: 1;
     top: 0;
     left: 0;
     background-color: lightblue;
     overflow-x: hidden;
-    padding-top: 0px; 
+    padding-top: 0px;
 }
 
-.sidenav a:hover, .dropdown-btn:hover {
+.sidenav a:hover,
+.dropdown-btn:hover {
     color: #f1f1f1;
-  }
+}
 
-.sidenav a, .dropdown-btn {
+.sidenav a,
+.dropdown-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -226,32 +223,40 @@ select {
     cursor: pointer;
     outline: none;
     font-weight: bold;
-  }
+}
 
-  .fa-caret-down {
+.fa-caret-down {
     float: right;
     padding-right: 8px;
     color: black;
-  }
+}
 
-  .formBuilderHead {
+.formBuilderHead {
     display: inline-block;
     margin: 0;
     padding: 0;
     color: white;
     background-color: rgb(99, 99, 216);
-    width:100%;
+    width: 100%;
     font-weight: lighter;
     text-align: center;
-  }
+}
 
-  #AddFieldBtn {
+#AddFieldBtn {
     font-weight: 550;
     font-size: 10px;
     background: lightgray;
     padding: 3px 3px 3px 3px;
-  }
+}
 
-  #down-icon{
-      text-align: right;
-  }
+#down-icon {
+    text-align: right;
+}
+
+.modal {
+    background-color: white;
+    text-align: center;
+    margin: 100px 100px 100px 100px;
+    height: 50px;
+    width: 200px;
+}

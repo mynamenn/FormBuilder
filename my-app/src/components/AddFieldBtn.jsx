@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import '../style/index.css';
 
-export function AddFieldBtn({handleAddField}) {
+export function AddFieldBtn({ handleAddField }) {
 
     const [open, setOpen] = React.useState(false);
     const [field, setField] = React.useState("");
@@ -24,7 +24,7 @@ export function AddFieldBtn({handleAddField}) {
 
     const handleFieldChange = (e) => {
         setField(e.target.value);
-        
+
     };
 
     return (
@@ -35,15 +35,19 @@ export function AddFieldBtn({handleAddField}) {
             <Modal
                 open={open}
                 onClose={handleClose}
+                class="modal"
             >
+
                 <form>
+                    <h2>Add Field</h2>
                     <label>
-                        Add field
-                    <input type="text" name="Add field"
+                        <input type="text" name="Add field"
                             value={field} onChange={handleFieldChange} />
                     </label>
                     <input type="button" value="Submit" onClick={handleSubmit} />
                 </form>
+
+
             </Modal>
         </div>
     );

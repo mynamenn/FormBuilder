@@ -11,6 +11,7 @@ const DrawerElements = (props) => {
     var display = document.getElementById("dropdown-container").style.display;
     display === 'block' ? document.getElementsByClassName("dropdown-btn")[0].style.background = null : document.getElementsByClassName("dropdown-btn")[0].style.background = green200 ;
     display === 'block' ? document.getElementById("dropdown-container").style.display = 'none' : document.getElementById("dropdown-container").style.display = 'block';
+    console.log(props.btnSetState);
 };
 
   return (
@@ -20,7 +21,7 @@ const DrawerElements = (props) => {
         Fields🔽
       </button>
       <div id="dropdown-container">
-        <NewDnd status='Sidebar' data={props.data}></NewDnd>
+        <NewDnd status='Sidebar' data={props.data} btnSetState={props.btnSetState}></NewDnd>
       </div>
       
       <a href="#about">Saved forms</a>
