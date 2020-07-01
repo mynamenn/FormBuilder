@@ -11,10 +11,14 @@ const Container = styled.div`
   text-align: left;
 `;
 
-export default class Task extends React.Component {
-  render() {
-    return (
-    <Draggable draggableId={this.props.task.id} index={this.props.index}>
+export default function Task(props) {
+  const onCloseField = () => {
+    console.log(props.task.id);
+    props.handleCloseField(props.col, props.task.id);
+  }
+
+  return (
+    <Draggable draggableId={props.task.id} index={props.index}>
       {provided => (
         <div
           ref={provided.innerRef}
@@ -22,12 +26,22 @@ export default class Task extends React.Component {
           {...provided.dragHandleProps}
           className={"item"}
         >
-          <label className={"item-title"} for={this.props.task.content}>{this.props.task.content}</label>
-          {(this.props.task.stats === 'main') ? <input type="text" id={this.props.task.content} name={this.props.task.content} 
-          placeholder={`Please enter your ${this.props.task.content.toLowerCase()}`} required /> : null}
+          <label className={"item-title"} for={props.task.content}>{props.task.content}</label>
+
+          <button id="crossBtn" onClick={onCloseField}>
+            ✖️
+            </button>
+
+          <br />
+
+          {(props.task.stats === 'main') ?
+            <div>
+              <input type="text" size="20" id={props.task.content} name={props.task.content}
+                placeholder={`Please enter your ${props.task.content.toLowerCase()}`} required />
+            </div>
+            : null}
         </div>
       )}
     </Draggable>
-    );
-  }
+  );
 }

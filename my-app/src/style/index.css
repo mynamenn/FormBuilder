@@ -52,6 +52,7 @@ select {
     height: 40px;
 }
 
+
 .row {
     display: flex;
     flex-direction: row;
@@ -65,6 +66,7 @@ select {
     border-radius: 5px;
     background-color: rgba(122, 77, 77, 0.486);
     text-align: center;
+    position: relative;
 }
 
 .item-side {
@@ -102,7 +104,7 @@ select {
     margin: 8px;
     border: 3px solid lightgrey;
     border-radius: 2px;
-    min-height: 150px;
+    min-height: 80px;
 }
 
 .col-header {
@@ -130,10 +132,11 @@ select {
     flex: 1 100%;
     margin-top: 0;
     text-align: center;
+    z-index: 4;
 }
 
 .modal {
-    background-color: #F4F5F7;
+    background-color: transparent;
     border-radius: 2px;
     margin: 48px 0 80px;
     min-height: 450px;
@@ -234,10 +237,11 @@ select {
 .formBuilderHead {
     display: inline-block;
     margin: 0;
-    padding: 0;
+    padding-top: 11px;
     color: white;
     background-color: rgb(99, 99, 216);
     width: 100%;
+    height: 65px;
     font-weight: lighter;
     text-align: center;
 }
@@ -253,10 +257,19 @@ select {
     text-align: right;
 }
 
-.modal {
-    background-color: white;
-    text-align: center;
-    margin: 100px 100px 100px 100px;
-    height: 50px;
-    width: 200px;
+#drawer{
+    z-index: 3
 }
+
+#appBar{
+    z-index: 0
+}
+
+#crossBtn{
+    background-color: transparent;
+    border: none;
+    font-size: 9px;
+    position: absolute;
+    top: -1px;
+    right: -5px;
+   }

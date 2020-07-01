@@ -92,12 +92,12 @@ class Menu extends React.Component {
       taskIds: finishTaskIds,
     };
 
-    const newStats = (destination.droppableId === 'column-1')? 
-    'main': 'Sidebar';
+    const newStats = (destination.droppableId === 'column-1') ?
+      'main' : 'Sidebar';
 
     const newTasks = {
       ...this.state.data.tasks,
-      [draggableId]: {...this.state.data.tasks[draggableId], stats: newStats}
+      [draggableId]: { ...this.state.data.tasks[draggableId], stats: newStats }
     };
 
     const newState = {
@@ -124,7 +124,7 @@ class Menu extends React.Component {
       >
         <div className={classes.root}>
           <CssBaseline />
-          <AppBar position="fixed" className={classes.appBar}>
+          <AppBar position="fixed" className={classes.appBar} id="appBar" >
             <Toolbar>
               <IconButton
                 color="inherit"
@@ -140,7 +140,7 @@ class Menu extends React.Component {
             </Toolbar>
           </AppBar>
 
-          <nav className={classes.drawer}>
+          <nav className={classes.drawer} id="drawer">
             {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
             <Hidden smUp implementation="css">
               <Drawer
@@ -172,7 +172,7 @@ class Menu extends React.Component {
           </nav>
 
           <main className={classes.content}>
-            <NewDnd status='main' data={this.state.data} ></NewDnd>
+            <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
           </main>
         </div>
       </DragDropContext>

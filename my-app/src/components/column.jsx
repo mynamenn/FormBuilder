@@ -13,13 +13,14 @@ export default class Column extends React.Component {
     return (
       <div class="col-wrapper">
         <Droppable droppableId={this.props.column.id}>
-          {provided => 
+          {provided =>
             <TaskList
               ref={provided.innerRef}
               {...provided.droppableProps}
             >
               {this.props.tasks.map((task, index) => (
-                <Task key={task.id} task={task} index={index} position={this.props.key}/>
+                <Task key={task.id} task={task} index={index}
+                  col={this.props.columnId} handleCloseField={this.props.handleCloseField} />
               ))}
               {provided.placeholder}
             </TaskList>

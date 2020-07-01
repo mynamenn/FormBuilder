@@ -10,6 +10,7 @@ const Window = ({ show, onClose, item }) => {
             onRequestClose={onClose}
             className={"modal"}
             overlayClassName={"overlay"}
+
         >
             <div className={"close-btn-ctn"}>
                 <h1 style={{ flex: "1 90%" }}>{item.title}</h1>

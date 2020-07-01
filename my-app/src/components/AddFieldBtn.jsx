@@ -1,7 +1,15 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
+import Modal from 'react-bootstrap/Modal';
+import ModalDialog from 'react-bootstrap/ModalDialog';
+import ModalTitle from 'react-bootstrap/ModalTitle';
+import ModalBody from 'react-bootstrap/ModalBody';
+import ModalFooter from 'react-bootstrap/ModalFooter';
 import { Button } from '@material-ui/core';
-import Modal from '@material-ui/core/Modal';
+import ModalHeader from 'react-bootstrap/ModalHeader';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/index.css';
+
 
 export function AddFieldBtn({ handleAddField }) {
 
@@ -29,25 +37,27 @@ export function AddFieldBtn({ handleAddField }) {
 
     return (
         <div>
-            <Button id="AddFieldBtn" type="button" onClick={handleOpen}>
+            <Button variant="primary" onClick={handleOpen}>
                 + Add Field
             </Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                class="modal"
-            >
 
-                <form>
-                    <h2>Add Field</h2>
+            <Modal show={open} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Add Field</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
                     <label>
                         <input type="text" name="Add field"
                             value={field} onChange={handleFieldChange} />
                     </label>
-                    <input type="button" value="Submit" onClick={handleSubmit} />
-                </form>
+                </Modal.Body>
 
-
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleSubmit}>
+                        Submit
+                    </Button>
+                </Modal.Footer>
             </Modal>
         </div>
     );
