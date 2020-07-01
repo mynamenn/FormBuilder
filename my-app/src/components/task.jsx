@@ -17,14 +17,25 @@ export default function Task(props) {
     props.handleCloseField(props.col, props.task.id);
   }
 
+  const Container = styled.div`
+  font-size: 15px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    position: relative;
+  background-color: ${props => (props.isDragging ? 'lightGreen' : 'null')};
+`;
+
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
-      {provided => (
-        <div
+      {(provided, snapshot) => (
+        <Container
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           className={"item"}
+          isDragging={snapshot.isDragging}
         >
           <label className={"item-title"} for={props.task.content}>{props.task.content}</label>
 
@@ -40,7 +51,7 @@ export default function Task(props) {
                 placeholder={`Please enter your ${props.task.content.toLowerCase()}`} required />
             </div>
             : null}
-        </div>
+        </Container>
       )}
     </Draggable>
   );
