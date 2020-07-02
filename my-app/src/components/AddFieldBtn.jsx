@@ -48,12 +48,12 @@ export function AddFieldBtn({ handleAddField }) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <label>Field Name </label>
+                    <label>Field Name &ensp;</label>
                     <input type="text" name="Add field"
                         value={field} onChange={handleFieldChange} />
                     <br />
 
-                    <label for="type">Type</label>
+                    <label for="type">Type &ensp; &ensp; &ensp; &ensp; &ensp;</label>
                     <select id="type" name="type" required>
                         <option value="String" selected="selected">String</option>
                         <option value="Float">Float</option>

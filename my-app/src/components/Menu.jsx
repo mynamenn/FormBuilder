@@ -13,6 +13,7 @@ import DrawerElements from './DrawerElements';
 import NewDnd from './newDnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 import initialData from '../data/initial-data';
+import DndImage from './DndImage';
 
 
 class Menu extends React.Component {
@@ -123,6 +124,7 @@ class Menu extends React.Component {
         onDragEnd={this.onDragEnd}
       >
         <div className={classes.root}>
+
           <CssBaseline />
           <AppBar position="fixed" className={classes.appBar} id="appBar" >
             <Toolbar>
@@ -171,7 +173,8 @@ class Menu extends React.Component {
             </Hidden>
           </nav>
 
-          <main className={classes.content}>
+          <main className={classes.content} id="main">
+            <DndImage></DndImage>
             <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
           </main>
         </div>
