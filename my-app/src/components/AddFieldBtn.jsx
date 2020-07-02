@@ -25,14 +25,15 @@ export function AddFieldBtn({ handleAddField }) {
     };
 
     const handleSubmit = () => {
-        handleAddField(field);
+        var element = document.getElementById('type');
+        var selected = element.options[element.selectedIndex].value
+        handleAddField(field, selected);
         handleClose();
         setField("");
     };
 
     const handleFieldChange = (e) => {
         setField(e.target.value);
-
     };
 
     return (
@@ -47,10 +48,20 @@ export function AddFieldBtn({ handleAddField }) {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <label>
-                        <input type="text" name="Add field"
-                            value={field} onChange={handleFieldChange} />
-                    </label>
+                    <label>Field Name </label>
+                    <input type="text" name="Add field"
+                        value={field} onChange={handleFieldChange} />
+                    <br />
+
+                    <label for="type">Type</label>
+                    <select id="type" name="type" required>
+                        <option value="String" selected="selected">String</option>
+                        <option value="Float">Float</option>
+                        <option value="Integer">Integer</option>
+                        <option value="Email">Email</option>
+                        <option value="Phone Number">Phone Number</option>
+                    </select>
+
                 </Modal.Body>
 
                 <Modal.Footer>

@@ -27,6 +27,7 @@ export default class Column extends React.Component {
               ))}
               {provided.placeholder}
             </TaskList>
+
           }
         </Droppable>
       </div>

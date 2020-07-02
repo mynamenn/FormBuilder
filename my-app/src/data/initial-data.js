@@ -1,10 +1,10 @@
 const initialData = {
   tasks: {
-    'task-1': { id: 'task-1', content: 'Name', stats: 'Sidebar' },
-    'task-2': { id: 'task-2', content: 'Age', stats: 'Sidebar' },
-    'task-3': { id: 'task-3', content: 'Loan Amount', stats: 'Sidebar' },
-    'task-4': { id: 'task-4', content: 'Period', stats: 'Sidebar' },
-    'task-5': { id: 'task-5', content: 'Email', stats: 'Sidebar' },
+    'task-1': { id: 'task-1', content: 'Name', stats: 'Sidebar', type: 'String' },
+    'task-2': { id: 'task-2', content: 'Age', stats: 'Sidebar', type: 'Integer' },
+    'task-3': { id: 'task-3', content: 'Loan Amount', stats: 'Sidebar', type: 'Float' },
+    'task-4': { id: 'task-4', content: 'Period', stats: 'Sidebar', type: 'Integer' },
+    'task-5': { id: 'task-5', content: 'Email', stats: 'Sidebar', type: 'Email' },
   },
   columns: {
     'column-1': {

@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useRef } from "react";
-import '../data/index';
 import '../style/index.css';
 import { green200 } from "material-ui/styles/colors";
 import NewDnd from "./newDnd";
