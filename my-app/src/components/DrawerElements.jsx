@@ -2,6 +2,7 @@ import React, { Fragment, useState, useRef } from "react";
 import '../style/index.css';
 import { green200 } from "material-ui/styles/colors";
 import NewDnd from "./newDnd";
+import { Link } from "react-router";
 
 const DrawerElements = (props) => {
 
@@ -9,7 +10,6 @@ const DrawerElements = (props) => {
     var display = document.getElementById("dropdown-container").style.display;
     display === 'block' ? document.getElementsByClassName("dropdown-btn")[0].style.background = null : document.getElementsByClassName("dropdown-btn")[0].style.background = green200;
     display === 'block' ? document.getElementById("dropdown-container").style.display = 'none' : document.getElementById("dropdown-container").style.display = 'block';
-    console.log(props.btnSetState);
   };
 
   return (

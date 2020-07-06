@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <h1> HEllO </h1>
       <DndProvider backend={HTML5Backend}>
-        <Menu />
+        <Menu></Menu>
       </DndProvider>
     </div>
   );

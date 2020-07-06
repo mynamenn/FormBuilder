@@ -14,9 +14,17 @@ import NewDnd from './newDnd';
 import { DragDropContext } from 'react-beautiful-dnd';
 import initialData from '../data/initial-data';
 import DndImage from './DndImage';
-
+import SaveFormBtn from './SaveFormBtn';
+import { ThemeConsumer } from 'styled-components';
 
 class Menu extends React.Component {
+  state = {
+    mobileOpen: false,
+    data: initialData,
+    img: false,
+    savedForms: [],
+  };
+
   onDragStart = (event, fieldName) => {
     event.dataTransfer.setData("fieldName", fieldName);
   }
@@ -33,10 +41,15 @@ class Menu extends React.Component {
     this.setState(state => ({ data: newData }));
   };
 
-  state = {
-    mobileOpen: false,
-    data: initialData
-  };
+  // Append newForm to savedForms
+  handleSaveForm = (newForm) => {
+    var newState = [...this.state.savedForms, newForm];
+    this.setState({ savedForms: newState });
+  }
+
+  setImg = img => {
+    this.setState({ img: img });
+  }
 
   onDragEnd = result => {
     // droppableId = 'column-1'
@@ -111,7 +124,6 @@ class Menu extends React.Component {
       },
     };
     this.setState(state => ({ data: newState }));
-    console.log(this.state.data);
   };
 
 
@@ -139,6 +151,9 @@ class Menu extends React.Component {
               <Typography variant="h6" color="inherit" noWrap>
                 💳 Instant Pay Form
             </Typography>
+
+              <SaveFormBtn tasks={this.state.data.tasks} img={this.state.img} handleSaveForm={this.handleSaveForm}></SaveFormBtn>
+
             </Toolbar>
           </AppBar>
 
@@ -156,7 +171,6 @@ class Menu extends React.Component {
                 }}
               >
                 <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
-
               </Drawer>
             </Hidden>
 
@@ -174,7 +188,7 @@ class Menu extends React.Component {
           </nav>
 
           <main className={classes.content} id="main">
-            <DndImage></DndImage>
+            <DndImage setImg={this.setImg}></DndImage>
             <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
           </main>
         </div>

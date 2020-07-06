@@ -14,7 +14,6 @@ const Container = styled.div`
 export default function Task(props) {
 
   const onCloseField = () => {
-    console.log(props.task.id);
     props.handleCloseField(props.col, props.task.id);
   }
 
