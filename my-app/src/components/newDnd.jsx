@@ -6,12 +6,12 @@ import { AddFieldBtn } from './AddFieldBtn';
 export default class NewDnd extends React.Component {
 
     // Add new element to fields when submit is pressed
-    handleAddField = (fieldName, fieldType) => {
+    handleAddField = (fieldName, fieldType, inputField) => {
         const newId = 'task-' + (Object.keys(this.props.data.tasks).length + 1).toString();
 
         const newTasks = {
             ...this.props.data.tasks,
-            [newId]: { id: newId, content: fieldName, stats: 'Sidebar', type: fieldType },
+            [newId]: { id: newId, content: fieldName, stats: 'Sidebar', type: fieldType, inputField: inputField },
         };
 
         const newTaskIds = {

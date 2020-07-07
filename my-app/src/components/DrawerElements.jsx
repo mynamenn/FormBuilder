@@ -2,7 +2,12 @@ import React, { Fragment, useState, useRef } from "react";
 import '../style/index.css';
 import { green200 } from "material-ui/styles/colors";
 import NewDnd from "./newDnd";
-import { Link } from "react-router";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const DrawerElements = (props) => {
 
@@ -15,6 +20,10 @@ const DrawerElements = (props) => {
   return (
     <div class="sidenav">
       <h2 class="formBuilderHead">Form Builder</h2>
+
+      <Link to='/'>Home</Link>
+      <Link to="/savedForms">Saved Forms</Link>
+
       <button class="dropdown-btn" onClick={onDropDown} >
         Fields🔽
       </button>
@@ -22,8 +31,8 @@ const DrawerElements = (props) => {
         <NewDnd status='Sidebar' data={props.data} btnSetState={props.btnSetState}></NewDnd>
       </div>
 
-      <a href="#about">Saved forms</a>
-      <a href="#about">Help</a>
+      <Link to="/help">Help</Link>
+
     </div>
   );
 }

@@ -15,7 +15,14 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import initialData from '../data/initial-data';
 import DndImage from './DndImage';
 import SaveFormBtn from './SaveFormBtn';
-import { ThemeConsumer } from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import SavedFormsPage from './SavedFormsPage';
+
 
 class Menu extends React.Component {
   state = {
@@ -132,67 +139,85 @@ class Menu extends React.Component {
     const { classes, theme } = this.props;
 
     return (
-      <DragDropContext
-        onDragEnd={this.onDragEnd}
-      >
-        <div className={classes.root}>
+      <Router>
+        <DragDropContext
+          onDragEnd={this.onDragEnd}
+        >
+          <div className={classes.root}>
 
-          <CssBaseline />
-          <AppBar position="fixed" className={classes.appBar} id="appBar" >
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                aria-label="Open drawer"
-                onClick={this.handleDrawerToggle}
-                className={classes.menuButton}
-              >
-                <MenuIcon />
-              </IconButton>
-              <Typography variant="h6" color="inherit" noWrap>
-                💳 Instant Pay Form
+            <CssBaseline />
+            <AppBar position="fixed" className={classes.appBar} id="appBar" >
+              <Toolbar>
+                <IconButton
+                  color="inherit"
+                  aria-label="Open drawer"
+                  onClick={this.handleDrawerToggle}
+                  className={classes.menuButton}
+                >
+                  <MenuIcon />
+                </IconButton>
+                <Typography variant="h6" color="inherit" noWrap>
+                  💳 Instant Pay Form
             </Typography>
 
-              <SaveFormBtn tasks={this.state.data.tasks} img={this.state.img} handleSaveForm={this.handleSaveForm}></SaveFormBtn>
+                <SaveFormBtn tasksOrder={this.state.data.columns['column-1'].taskIds} img={this.state.img} handleSaveForm={this.handleSaveForm}></SaveFormBtn>
 
-            </Toolbar>
-          </AppBar>
+              </Toolbar>
+            </AppBar>
 
-          <nav className={classes.drawer} id="drawer">
-            {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-            <Hidden smUp implementation="css">
-              <Drawer
-                container={this.props.container}
-                variant="temporary"
-                anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                open={this.state.mobileOpen}
-                onClose={this.handleDrawerToggle}
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-              >
-                <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
-              </Drawer>
-            </Hidden>
+            <nav className={classes.drawer} id="drawer">
+              {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+              <Hidden smUp implementation="css">
+                <Drawer
+                  container={this.props.container}
+                  variant="temporary"
+                  anchor={theme.direction === 'rtl' ? 'right' : 'left'}
+                  open={this.state.mobileOpen}
+                  onClose={this.handleDrawerToggle}
+                  classes={{
+                    paper: classes.drawerPaper,
+                  }}
+                >
+                  <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
+                </Drawer>
+              </Hidden>
 
-            <Hidden xsDown implementation="css">
-              <Drawer
-                classes={{
-                  paper: classes.drawerPaper,
-                }}
-                variant="permanent"
-                open
-              >
-                <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
-              </Drawer>
-            </Hidden>
-          </nav>
+              <Hidden xsDown implementation="css">
+                <Drawer
+                  classes={{
+                    paper: classes.drawerPaper,
+                  }}
+                  variant="permanent"
+                  open
+                >
+                  <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
+                </Drawer>
+              </Hidden>
+            </nav>
 
-          <main className={classes.content} id="main">
-            <DndImage setImg={this.setImg}></DndImage>
-            <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
-          </main>
-        </div>
-      </DragDropContext>
+
+            <main className={classes.content} id="main">
+              <br />
+              <br />
+
+              <Switch>
+                <Route path="/" exact>
+                  <DndImage setImg={this.setImg}></DndImage>
+                  <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
+                </Route>
+                <Route path="/savedForms">
+                  <SavedFormsPage forms={this.state.savedForms} tasks={this.state.data.tasks}></SavedFormsPage>
+                </Route>
+                <Route path="/help">
+                  <h1>Help here</h1>
+                </Route>
+              </Switch>
+
+            </main>
+
+          </div>
+        </DragDropContext>
+      </Router>
     );
   }
 }

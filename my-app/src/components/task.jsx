@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Draggable } from 'react-beautiful-dnd';
+import InputFieldHandler from './InputFieldHandler'
 
 const Container = styled.div`
   border: 1px solid lightgrey;
@@ -27,32 +28,6 @@ export default function Task(props) {
   background-color: ${props => (props.isDragging ? 'lightGreen' : 'null')};
 `;
 
-  const Regex = {
-    'String': "^[a-z ,.'-]+$",
-    'Email': "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
-    'Phone Number': "^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$",
-    'Float': "^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$",
-    'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$"
-  }
-
-  const combineId = (Id) => {
-    return 'alert' + Id;
-  }
-
-  const updateVal = (type, Id, e) => {
-    var val = document.getElementById(Id).value;
-    var reg = new RegExp(Regex[type]);
-    var alertId = combineId(Id);
-
-    if (reg.test(val)) {
-      document.getElementById(alertId).innerHTML = '';
-      return true;
-    } else {
-      document.getElementById(alertId).innerHTML = 'Invalid ' + Id + '.';
-      return true;
-    }
-  }
-
   return (
     <Draggable draggableId={props.task.id} index={props.index}>
       {(provided, snapshot) => (
@@ -72,14 +47,7 @@ export default function Task(props) {
           <br />
 
           {(props.task.stats === 'main') ?
-            <div>
-              <input type="text" size="20" id={props.task.content} name={props.task.content}
-                placeholder={`Please enter your ${props.task.content.toLowerCase()}`}
-                pattern={Regex[props.task.type]} required
-                onChange={updateVal.bind(this, props.task.type, props.task.content)} />
-              <br />
-              <span id={combineId(props.task.content)} class="errorSpan"></span>
-            </div>
+            <InputFieldHandler content={props.task.content} type={props.task.type} inputField={props.task.inputField}></InputFieldHandler>
             : null}
 
         </Container>

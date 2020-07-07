@@ -22,6 +22,7 @@
     "react-markdown": "^4.3.1",
     "react-modal": "^3.11.2",
     "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-sidemenu": "^1.1.0",
     "react-simple-sidenav": "^2.0.0",

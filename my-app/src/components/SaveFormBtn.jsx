@@ -24,7 +24,7 @@ export default function SaveFormBtn(props) {
         var newForm = {
             [formName]: {
                 image: props.img,
-                tasks: props.tasks
+                taskIds: props.tasksOrder
             }
         }
         props.handleSaveForm(newForm);

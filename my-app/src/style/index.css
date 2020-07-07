@@ -174,6 +174,16 @@ select {
     background-color: #DCDCDC;
 }
 
+.savedFormItem{
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: lightskyblue;
+    text-align: center;
+    position: relative;
+}
+
 #dropdown-container {
     display: none;
     background-color: rgb(182, 206, 214);
@@ -242,6 +252,15 @@ select {
     height: 65px;
     font-weight: lighter;
     text-align: center;
+}
+
+.savedForm{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(69, 90, 97);
+    overflow-x: hidden;
+    padding-top: 0px;
 }
 
 #AddFieldBtn {

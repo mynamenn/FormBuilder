@@ -25,9 +25,11 @@ export function AddFieldBtn({ handleAddField }) {
     };
 
     const handleSubmit = () => {
-        var element = document.getElementById('type');
-        var selected = element.options[element.selectedIndex].value
-        handleAddField(field, selected);
+        var inputFieldElement = document.getElementById('inputField');
+        var inputFieldSelected = inputFieldElement.options[inputFieldElement.selectedIndex].value
+        var typeElement = document.getElementById('type');
+        var typeSelected = typeElement.options[typeElement.selectedIndex].value
+        handleAddField(field, typeSelected, inputFieldSelected);
         handleClose();
         setField("");
     };
@@ -51,6 +53,15 @@ export function AddFieldBtn({ handleAddField }) {
                     <label>Field Name &ensp;</label>
                     <input type="text" name="Add field"
                         value={field} onChange={handleFieldChange} />
+                    <br />
+                    <br />
+
+                    <label for="inputField">Input Field &ensp; &ensp;</label>
+                    <select id="inputField" name="inputField" required>
+                        <option value="TextField" selected="selected">Text Field</option>
+                        <option value="BankList">Bank List</option>
+                    </select>
+                    <br />
                     <br />
 
                     <label for="type">Type &ensp; &ensp; &ensp; &ensp; &ensp;</label>
