@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../style/index.css';
 
 
-export default function InputFieldHandler({ content, type, inputField }) {
+export default function InputFieldHandler({ content, type, inputField, listValues }) {
     const Regex = {
         'String': "^[a-z ,.'-]+$",
         'Email': "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
@@ -53,6 +53,24 @@ export default function InputFieldHandler({ content, type, inputField }) {
                 </select>
             </div>
         )
+    } else if (inputField === 'Checkbox') {
+        return (
+            <div>
+                <input type="checkbox" id={content} value="checkboxVal" />
+                <label for={content} className='item-title'>&ensp; {content}</label>
 
+            </div>
+        )
+    } else if (inputField === 'DropDownList') {
+        return (
+            <div>
+                <select id={content} name={content} required>
+                    {listValues.map((value) =>
+                        <option value={value}>{value}</option>
+                    )}
+                </select>
+            </div>
+        )
     }
+
 }

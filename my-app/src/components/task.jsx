@@ -38,16 +38,25 @@ export default function Task(props) {
           className={"item"}
           isDragging={snapshot.isDragging}
         >
-          <label className={"item-title"} for={props.task.content}>{props.task.content}</label>
+          {(props.task.inputField === 'Checkbox' && props.task.stats === 'Sidebar') ?
+            <label className={"item-title"} for='Checkbox'>Checkbox</label> :
+            null
+          }
+
+          {(props.task.inputField != 'Checkbox') ?
+            <label className={"item-title"} for={props.task.content}>{props.task.content}</label> :
+            null
+          }
 
           <button id="crossBtn" onClick={onCloseField}>
             ✖️
-            </button>
+          </button>
 
           <br />
 
           {(props.task.stats === 'main') ?
-            <InputFieldHandler content={props.task.content} type={props.task.type} inputField={props.task.inputField}></InputFieldHandler>
+            <InputFieldHandler content={props.task.content} type={props.task.type} inputField={props.task.inputField}
+              listValues={props.task.listVal}></InputFieldHandler>
             : null}
 
         </Container>

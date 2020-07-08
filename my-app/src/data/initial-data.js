@@ -1,10 +1,10 @@
 const initialData = {
   tasks: {
-    'task-1': { id: 'task-1', content: 'Name', stats: 'Sidebar', type: 'String', inputField: 'TextField' },
-    'task-2': { id: 'task-2', content: 'Age', stats: 'Sidebar', type: 'Integer', inputField: 'TextField' },
-    'task-3': { id: 'task-3', content: 'Loan Amount', stats: 'Sidebar', type: 'Float', inputField: 'TextField' },
-    'task-4': { id: 'task-4', content: 'Period', stats: 'Sidebar', type: 'Integer', inputField: 'TextField' },
-    'task-5': { id: 'task-5', content: 'Email', stats: 'Sidebar', type: 'Email', inputField: 'TextField' },
+    'task-1': { id: 'task-1', content: 'Name', stats: 'Sidebar', type: 'String', inputField: 'TextField', listValues: [] },
+    'task-2': { id: 'task-2', content: 'Age', stats: 'Sidebar', type: 'Integer', inputField: 'TextField', listValues: [] },
+    'task-3': { id: 'task-3', content: 'Loan Amount', stats: 'Sidebar', type: 'Float', inputField: 'TextField', listValues: [] },
+    'task-4': { id: 'task-4', content: 'Period', stats: 'Sidebar', type: 'Integer', inputField: 'TextField', listValues: [] },
+    'task-5': { id: 'task-5', content: 'Email', stats: 'Sidebar', type: 'Email', inputField: 'TextField', listValues: [] },
   },
   columns: {
     'column-1': {
