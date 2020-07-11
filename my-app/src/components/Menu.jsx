@@ -22,7 +22,13 @@ import {
   Link
 } from "react-router-dom";
 import SavedFormsPage from './SavedFormsPage';
+import axios from 'axios';
 
+const name = {
+  value: "testing123"
+}
+
+//const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
 
 class Menu extends React.Component {
   state = {
@@ -48,10 +54,20 @@ class Menu extends React.Component {
     this.setState(state => ({ data: newData }));
   };
 
+
   // Append newForm to savedForms
   handleSaveForm = (newForm) => {
     var newState = [...this.state.savedForms, newForm];
+    var tasks = this.state.data.tasks;
     this.setState({ savedForms: newState });
+    axios
+      .post('/DemoApp/add', { newForm, tasks })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
 
   setImg = img => {
