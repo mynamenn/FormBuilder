@@ -12,7 +12,9 @@ export default function InputFieldHandler({ content, type, inputField, listValue
         'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$"
     }
 
-    const bankList = ['CIMB', 'HSBC', 'Maybank', 'Bank Negara', 'Barclays']
+    const bankList = ['Affin Bank', 'CIMB Clicks', 'Bank Islam', 'Hong Leong Bank',
+        'HSBC Bank', 'Maybank2U', 'Maybank2U', 'OCBC Bank', 'Public Bank', 'SBI Bank A'
+        , 'SBI Bank B', 'SBI Bank C'];
 
     const combineId = (Id) => {
         return 'alert' + Id;

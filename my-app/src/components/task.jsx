@@ -56,7 +56,7 @@ export default function Task(props) {
 
           {(props.task.stats === 'main') ?
             <InputFieldHandler content={props.task.content} type={props.task.type} inputField={props.task.inputField}
-              listValues={props.task.listVal}></InputFieldHandler>
+              listValues={props.task.listValues}></InputFieldHandler>
             : null}
 
         </Container>

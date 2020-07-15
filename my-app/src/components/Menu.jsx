@@ -24,11 +24,17 @@ import {
 import SavedFormsPage from './SavedFormsPage';
 import axios from 'axios';
 
-const name = {
-  value: "testing123"
+const Regex = {
+  'String': "^[a-z ,.'-]+$",
+  'Email': "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
+  'Phone Number': "^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$",
+  'Float': "^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$",
+  'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$"
 }
 
-//const headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+const bankList = ['Affin Bank', 'CIMB Clicks', 'Bank Islam', 'Hong Leong Bank',
+  'HSBC Bank', 'Maybank2U', 'Maybank2U', 'OCBC Bank', 'Public Bank', 'SBI Bank A'
+  , 'SBI Bank B', 'SBI Bank C']
 
 class Menu extends React.Component {
   state = {
@@ -61,7 +67,7 @@ class Menu extends React.Component {
     var tasks = this.state.data.tasks;
     this.setState({ savedForms: newState });
     axios
-      .post('/DemoApp/add', { newForm, tasks })
+      .post('/DemoApp/add', { newForm, tasks, Regex, bankList })
       .then(response => {
         console.log(response.data)
       })

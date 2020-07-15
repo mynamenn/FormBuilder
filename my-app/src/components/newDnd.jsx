@@ -7,11 +7,11 @@ export default class NewDnd extends React.Component {
 
     // Add new element to fields when submit is pressed
     handleAddField = (fieldName, fieldType, inputField, list) => {
-        const newId = 'task-' + (Object.keys(this.props.data.tasks).length + 1).toString();
-
+        this.props.data.initialLength += 1;
+        const newId = 'task-' + (this.props.data.initialLength).toString();
         const newTasks = {
             ...this.props.data.tasks,
-            [newId]: { id: newId, content: fieldName, stats: 'Sidebar', type: fieldType, inputField: inputField, listVal: list },
+            [newId]: { id: newId, content: fieldName, stats: 'Sidebar', type: fieldType, inputField: inputField, listValues: list },
         };
 
         const newTaskIds = {
