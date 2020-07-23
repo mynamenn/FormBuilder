@@ -58,7 +58,6 @@ export default class NewDnd extends React.Component {
                 [colName]: newTaskIds
             }
         };
-
         this.props.btnSetState(newState);
     };
 

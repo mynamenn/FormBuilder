@@ -105,6 +105,10 @@ export function AddFieldBtn({ handleAddField }) {
                         <option value="BankList">Bank List</option>
                         <option value="Checkbox">Checkbox</option>
                         <option value="DropDownList">Drop Down List</option>
+                        <option value="Frequency">Frequency</option>
+                        <option value="BusinessModel">Business Model</option>
+                        <option value="Date">Date</option>
+                        <option value="idType">ID Type</option>
                     </select>
 
                     <div id="Types">
@@ -116,6 +120,7 @@ export function AddFieldBtn({ handleAddField }) {
                             <option value="Integer">Integer</option>
                             <option value="Email">Email</option>
                             <option value="Phone Number">Phone Number</option>
+                            <option value="Maximum Frequency">Maximum Frequency</option>
                         </select>
                     </div>
 

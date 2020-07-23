@@ -36,7 +36,7 @@ function DndImage(props) {
         <div id="DropFilesHere">
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
-                <p>Drop Image Here 📁</p>
+                <p id="dropImageTitle">Drop Image Here 📁</p>
             </div>
             <div>{images}</div>
             <script>

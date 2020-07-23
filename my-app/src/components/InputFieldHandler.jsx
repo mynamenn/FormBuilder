@@ -5,11 +5,12 @@ import '../style/index.css';
 
 export default function InputFieldHandler({ content, type, inputField, listValues }) {
     const Regex = {
-        'String': "^[a-z ,.'-]+$",
+        'String': "^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$",
         'Email': "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
         'Phone Number': "^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$",
         'Float': "^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$",
-        'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$"
+        'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$",
+        'Maximum Frequency': "^[0-9]?[0-9]?[0-9]$"
     }
 
     const bankList = ['Affin Bank', 'CIMB Clicks', 'Bank Islam', 'Hong Leong Bank',
@@ -70,6 +71,43 @@ export default function InputFieldHandler({ content, type, inputField, listValue
                     {listValues.map((value) =>
                         <option value={value}>{value}</option>
                     )}
+                </select>
+            </div>
+        )
+    } else if (inputField === 'Frequency') {
+        return (
+            <div>
+                <select id={content} name={content} required>
+                    <option value="YEARLY">YEARLY</option>
+                    <option value="MONTHLY" selected>MONTHLY</option>
+                    <option value="WEEKLY">WEEKLY</option>
+                    <option value="DAILY">DAILY</option>
+                </select>
+            </div>
+        )
+    } else if (inputField === 'BusinessModel') {
+        return (
+            <div>
+                <select id={content} name={content} required>
+                    <option value="B2C" selected>B2C</option>
+                    <option value="B2B1">B2B1</option>
+                </select>
+            </div>
+        )
+    } else if (inputField === 'Date') {
+        return (
+            <div>
+                <input type="date" id={content} />
+            </div>
+        )
+    } else if (inputField === 'idType') {
+        return (
+            <div>
+                <select id={content} name={content} required>
+                    <option value="PASSPORT_NUMBER" selected>Passport Number</option>
+                    <option value="NRIC">NRIC</option>
+                    <option value="BUSINESS_REGISTRATION_NUMBER">Business Registration Number</option>
+                    <option value="OTHERS">Others</option>
                 </select>
             </div>
         )

@@ -19,17 +19,17 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import SavedFormsPage from './SavedFormsPage';
 import axios from 'axios';
 
 const Regex = {
-  'String': "^[a-z ,.'-]+$",
+  'String': "^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$",
   'Email': "^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$",
   'Phone Number': "^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$",
   'Float': "^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$",
-  'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$"
+  'Integer': "^[+]?([0-9]+(?:[\][0-9]*)?|\[0-9]+)$",
+  'Maximum Frequency': "^[0-9]?[0-9]?[0-9]$"
 }
 
 const bankList = ['Affin Bank', 'CIMB Clicks', 'Bank Islam', 'Hong Leong Bank',
@@ -57,23 +57,35 @@ class Menu extends React.Component {
   };
 
   btnSetState = (newData) => {
+    console.log(this.state.savedForms)
     this.setState(state => ({ data: newData }));
   };
 
 
   // Append newForm to savedForms
   handleSaveForm = (newForm) => {
+    console.log(this.state.savedForms)
     var newState = [...this.state.savedForms, newForm];
-    var tasks = this.state.data.tasks;
-    this.setState({ savedForms: newState });
-    axios
-      .post('/DemoApp/add', { newForm, tasks, Regex, bankList })
-      .then(response => {
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+    let link = window.location.href.split('/');
+    let companyName = link[3];
+
+    this.setState({ savedForms: newState }, () => {
+      axios
+        .post('/DemoApp/add', null, {
+          params: {
+            companyName: companyName,
+            newForm: btoa(JSON.stringify({ newForm, Regex, bankList })),
+          }
+        })
+        .then(response => {
+          console.log(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    });
+
+
   }
 
   setImg = img => {
@@ -178,11 +190,12 @@ class Menu extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" color="inherit" noWrap>
-                  💳 Instant Pay Form
-            </Typography>
+                <h1 id="appBarTitle">curlec</h1>
 
-                <SaveFormBtn tasksOrder={this.state.data.columns['column-1'].taskIds} img={this.state.img} handleSaveForm={this.handleSaveForm}></SaveFormBtn>
+                <SaveFormBtn tasksOrder={this.state.data.columns['column-1'].taskIds}
+                  img={this.state.img} tasks={this.state.data.tasks}
+                  handleSaveForm={this.handleSaveForm}
+                ></SaveFormBtn>
 
               </Toolbar>
             </AppBar>
@@ -223,15 +236,15 @@ class Menu extends React.Component {
               <br />
 
               <Switch>
-                <Route path="/" exact>
-                  <DndImage setImg={this.setImg}></DndImage>
-                  <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
-                </Route>
                 <Route path="/savedForms">
                   <SavedFormsPage forms={this.state.savedForms} tasks={this.state.data.tasks}></SavedFormsPage>
                 </Route>
                 <Route path="/help">
                   <h1>Help here</h1>
+                </Route>
+                <Route path="/*" exact>
+                  <DndImage setImg={this.setImg}></DndImage>
+                  <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
                 </Route>
               </Switch>
 

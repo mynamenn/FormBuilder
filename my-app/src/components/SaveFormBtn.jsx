@@ -24,7 +24,8 @@ export default function SaveFormBtn(props) {
         var newForm = {
             [formName]: {
                 image: props.img,
-                taskIds: props.tasksOrder
+                taskIds: props.tasksOrder,
+                tasks: props.tasks
             }
         }
         props.handleSaveForm(newForm);
@@ -34,7 +35,11 @@ export default function SaveFormBtn(props) {
 
     return (
         <div>
-            <Button onClick={handleOpen}>💾</Button>
+            <Button onClick={handleOpen}>
+                {/* <img src="save.png" alt="Italian Trulli"
+                    width="25" height="25" color="white" /> */}
+                💾
+            </Button>
 
             <Modal show={open} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -53,6 +58,6 @@ export default function SaveFormBtn(props) {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </div>
+        </div >
     )
 }
