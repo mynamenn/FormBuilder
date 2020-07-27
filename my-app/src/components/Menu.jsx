@@ -6,7 +6,6 @@ import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import '../style/index.css';
 import DrawerElements from './DrawerElements';
@@ -21,7 +20,7 @@ import {
   Route,
 } from "react-router-dom";
 import SavedFormsPage from './SavedFormsPage';
-import axios from 'axios';
+
 
 const Regex = {
   'String': "^[a-zA-Z-,]+(\s{0,1}[a-zA-Z-, ])*$",
@@ -40,7 +39,7 @@ class Menu extends React.Component {
   state = {
     mobileOpen: false,
     data: initialData,
-    img: false,
+    img: "",
     savedForms: [],
   };
 
@@ -57,38 +56,58 @@ class Menu extends React.Component {
   };
 
   btnSetState = (newData) => {
-    console.log(this.state.savedForms)
     this.setState(state => ({ data: newData }));
   };
 
 
   // Append newForm to savedForms
   handleSaveForm = (newForm) => {
-    console.log(this.state.savedForms)
     var newState = [...this.state.savedForms, newForm];
     let link = window.location.href.split('/');
     let companyName = link[3];
 
-    this.setState({ savedForms: newState }, () => {
-      axios
-        .post('/DemoApp/add', null, {
-          params: {
-            companyName: companyName,
-            newForm: btoa(JSON.stringify({ newForm, Regex, bankList })),
-          }
-        })
-        .then(response => {
-          console.log(response.data)
-        })
-        .catch(error => {
-          console.log(error)
-        })
-    });
+    const newFormFile = new File([JSON.stringify({ newForm, Regex, bankList })], "form.txt",
+      { type: 'text/plain' });
 
+    const formData = new FormData();
+    formData.append('companyName', companyName);
+    formData.append('newForm', newFormFile);
+
+    console.log("companyName: ", formData.get("companyName"));
+    console.log("newForm: ", formData.get("newForm"));
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '/DemoApp/add', true);
+    xhr.send(formData);
+    // const config = {
+    //   headers: { 'content-type': 'application/json' }
+    // }
+    // console.log(formData.get('companyName'));
+    // console.log(formData.get('image'));
+    // console.log(formData.get('newForm'));
+    // this.setState({ savedForms: newState }, () => {
+    //   axios
+    //     .post('/DemoApp/add', config, formData)
+    //     .then(response => {
+    //       console.log(response.data)
+    //     })
+    //     .catch(error => {
+    //       console.log(error)
+    //     })
+    // });
 
   }
 
+  // .post('/DemoApp/add', null, {
+  //   params: {
+  //     companyName: companyName,
+  //     newForm: btoa(JSON.stringify({ newForm, Regex, bankList })),
+  //     image: this.state.image,
+  //   }
+  // })
+
   setImg = img => {
+    //convert to base64
     this.setState({ img: img });
   }
 

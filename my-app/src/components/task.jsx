@@ -39,7 +39,7 @@ export default function Task(props) {
           isDragging={snapshot.isDragging}
         >
           {(props.task.inputField === 'Checkbox' && props.task.stats === 'Sidebar') ?
-            <label className={"item-title"} for='Checkbox'>Checkbox</label> :
+            <label className={"item-title"} htmlfor='Checkbox'>Checkbox</label> :
             null
           }
 

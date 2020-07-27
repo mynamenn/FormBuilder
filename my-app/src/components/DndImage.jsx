@@ -14,18 +14,26 @@ function DndImage(props) {
                     Object.assign(file, {
                         preview: URL.createObjectURL(file),
                     }),
-                    props.setImg(acceptedFiles[0]),
                 ),
             );
+            var fileToLoad = acceptedFiles[0];
+            var fileReader = new FileReader();
+
+            fileReader.onload = function (fileLoadedEvent) {
+                var srcData = fileLoadedEvent.target.result; // <--- data: base64
+                var newImage = document.createElement('img');
+                newImage.src = srcData;
+                // newImage.outerHTML is the image
+                props.setImg(newImage.src);
+            }
+            fileReader.readAsDataURL(fileToLoad);
         },
     })
 
     const images = files.map((file) => (
         <div key={file.name}>
-
             <div>
                 <img src={file.preview} style={{ width: "600px", height: "150px", background: "transparent" }} alt="preview" />
-
             </div>
         </div>
     ))
@@ -39,11 +47,6 @@ function DndImage(props) {
                 <p id="dropImageTitle">Drop Image Here 📁</p>
             </div>
             <div>{images}</div>
-            <script>
-                {(files) => {
-                    props.setImg(files)
-                }}
-            </script>
         </div>
     )
 }

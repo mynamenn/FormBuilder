@@ -325,3 +325,9 @@ select {
 #saveButton{
     float: right;
 }
+
+#imageTest{
+    width: 10%;
+    height: 10%;
+    background-color: black;
+}
