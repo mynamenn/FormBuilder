@@ -19,7 +19,6 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import SavedFormsPage from './SavedFormsPage';
 
 
 const Regex = {
@@ -73,41 +72,14 @@ class Menu extends React.Component {
     formData.append('companyName', companyName);
     formData.append('newForm', newFormFile);
 
-    console.log("companyName: ", formData.get("companyName"));
-    console.log("newForm: ", formData.get("newForm"));
-
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '/DemoApp/add', true);
     xhr.send(formData);
-    // const config = {
-    //   headers: { 'content-type': 'application/json' }
-    // }
-    // console.log(formData.get('companyName'));
-    // console.log(formData.get('image'));
-    // console.log(formData.get('newForm'));
-    // this.setState({ savedForms: newState }, () => {
-    //   axios
-    //     .post('/DemoApp/add', config, formData)
-    //     .then(response => {
-    //       console.log(response.data)
-    //     })
-    //     .catch(error => {
-    //       console.log(error)
-    //     })
-    // });
 
   }
 
-  // .post('/DemoApp/add', null, {
-  //   params: {
-  //     companyName: companyName,
-  //     newForm: btoa(JSON.stringify({ newForm, Regex, bankList })),
-  //     image: this.state.image,
-  //   }
-  // })
 
   setImg = img => {
-    //convert to base64
     this.setState({ img: img });
   }
 
@@ -209,7 +181,7 @@ class Menu extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <h1 id="appBarTitle">curlec</h1>
+                <h1 id="appBarTitle">Form Builder</h1>
 
                 <SaveFormBtn tasksOrder={this.state.data.columns['column-1'].taskIds}
                   img={this.state.img} tasks={this.state.data.tasks}
@@ -220,22 +192,6 @@ class Menu extends React.Component {
             </AppBar>
 
             <nav className={classes.drawer} id="drawer">
-              {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-              <Hidden smUp implementation="css">
-                <Drawer
-                  container={this.props.container}
-                  variant="temporary"
-                  anchor={theme.direction === 'rtl' ? 'right' : 'left'}
-                  open={this.state.mobileOpen}
-                  onClose={this.handleDrawerToggle}
-                  classes={{
-                    paper: classes.drawerPaper,
-                  }}
-                >
-                  <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
-                </Drawer>
-              </Hidden>
-
               <Hidden xsDown implementation="css">
                 <Drawer
                   classes={{
@@ -255,12 +211,6 @@ class Menu extends React.Component {
               <br />
 
               <Switch>
-                <Route path="/savedForms">
-                  <SavedFormsPage forms={this.state.savedForms} tasks={this.state.data.tasks}></SavedFormsPage>
-                </Route>
-                <Route path="/help">
-                  <h1>Help here</h1>
-                </Route>
                 <Route path="/*" exact>
                   <DndImage setImg={this.setImg}></DndImage>
                   <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>

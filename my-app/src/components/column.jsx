@@ -7,13 +7,13 @@ import '../style/index.css';
 const TaskList = styled.div`
   padding: 8px;
   transition: background-color 0.2s ease;
-  background-color: ${props => (props.isDraggingOver ? 'lightblue' : 'white')};
+  background-color: ${props => (props.isDraggingOver ? '#673BB7' : 'white')};
 `;
 
 export default class Column extends React.Component {
   render() {
     return (
-      <div class="col-wrapper">
+      <div className="col-wrapper">
         <Droppable droppableId={this.props.column.id}>
           {(provided, snapshot) =>
             <TaskList
@@ -26,6 +26,11 @@ export default class Column extends React.Component {
                   col={this.props.columnId} handleCloseField={this.props.handleCloseField} />
               ))}
               {provided.placeholder}
+              {
+                (this.props.column.title === "main") ?
+                  <button className="submit">Submit</button>
+                  : null
+              }
             </TaskList>
 
           }

@@ -95,13 +95,13 @@ export function AddFieldBtn({ handleAddField }) {
                 <Modal.Body>
                     <label>Field Name &ensp; &nbsp;</label>
                     <input type="text" name="Add field"
-                        value={field} onChange={handleFieldChange} />
+                        value={field} id="addFieldInput" onChange={handleFieldChange} />
                     <br />
                     <br />
 
                     <label for="inputField">Input Field &ensp; &ensp;</label>
                     <select id="inputField" name="inputField" required onChange={checkInputField}>&ensp;
-                        <option value="TextField" selected="selected">Text Field</option>
+                        <option value="TextField" defaultValue="selected">Text Field</option>
                         <option value="BankList">Bank List</option>
                         <option value="Checkbox">Checkbox</option>
                         <option value="DropDownList">Drop Down List</option>

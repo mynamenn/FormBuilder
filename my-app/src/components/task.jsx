@@ -23,7 +23,7 @@ export default function Task(props) {
     margin-bottom: 10px;
     padding: 10px;
     border-radius: 5px;
-    text-align: center;
+    text-align: left;
     position: relative;
   background-color: ${props => (props.isDragging ? 'lightGreen' : 'null')};
 `;
@@ -39,12 +39,12 @@ export default function Task(props) {
           isDragging={snapshot.isDragging}
         >
           {(props.task.inputField === 'Checkbox' && props.task.stats === 'Sidebar') ?
-            <label className={"item-title"} htmlfor='Checkbox'>Checkbox</label> :
+            <label className={"item-title"} htmlFor='Checkbox'>Checkbox</label> :
             null
           }
 
-          {(props.task.inputField != 'Checkbox') ?
-            <label className={"item-title"} for={props.task.content}>{props.task.content}</label> :
+          {(props.task.inputField != 'Checkbox' && props.task.stats === 'Sidebar') ?
+            <label className={"item-title"} htmlFor={props.task.content}>{props.task.content}</label> :
             null
           }
 
@@ -56,7 +56,8 @@ export default function Task(props) {
 
           {(props.task.stats === 'main') ?
             <InputFieldHandler content={props.task.content} type={props.task.type} inputField={props.task.inputField}
-              listValues={props.task.listValues}></InputFieldHandler>
+              listValues={props.task.listValues}
+              className=""></InputFieldHandler>
             : null}
 
         </Container>
