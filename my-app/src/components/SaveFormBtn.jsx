@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from '@material-ui/core';
 
+
+// Props passed : tasksOrder, img, tasks, handleSaveForm, initialLength
+// handleSaveForm() post formData containing newForm and companyName to backend
 export default function SaveFormBtn(props) {
 
     const [open, setOpen] = React.useState(false);
@@ -43,6 +46,8 @@ export default function SaveFormBtn(props) {
                 merchantId: merchantId,
                 employeeId: employeeId,
                 formType: formType,
+                published: false,
+                initialLength: props.initialLength
             }
         }
         props.handleSaveForm(newForm);

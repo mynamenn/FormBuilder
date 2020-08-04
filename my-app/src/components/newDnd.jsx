@@ -2,8 +2,12 @@ import React from 'react';
 import Column from './column';
 import { AddFieldBtn } from './AddFieldBtn';
 
-
+// Passed props: status, data, btnSetState, savedForms, currSavedFormIndex, img
+// btnSetState sets data in Menu
 export default class NewDnd extends React.Component {
+    state = {
+        saveSuccess: "",
+    }
 
     // Add new element to fields when submit is pressed
     handleAddField = (fieldName, fieldType, inputField, list) => {
@@ -22,6 +26,7 @@ export default class NewDnd extends React.Component {
 
         const newState = {
             ...this.props.data,
+            initialLength: this.props.data.initialLength,
             tasks: newTasks,
             columns: {
                 ...this.props.data.columns,
@@ -70,12 +75,51 @@ export default class NewDnd extends React.Component {
 
     }
 
+    // Post to write servlet
+    handleSaveChanges = () => {
+        var link = window.location.href.split('/');
+        var companyName = link[3];
+        var formName = Object.keys(this.props.savedForms[this.props.currSavedFormIndex]['newForm']);
+        this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['tasks'] = this.props.data.tasks;
+        this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['taskIds'] = this.props.data['columns']['column-1']['taskIds'];
+        this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['initialLength'] = this.props.data.initialLength;
+        this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['image'] = this.props.img;
+
+        var submit = [];
+        this.props.savedForms.map(form => {
+            submit.push(JSON.stringify(form) + '\n');
+        })
+        const newFormFile = new File(submit, "form.txt",
+            { type: 'text/plain' });
+
+        const formData = new FormData();
+        formData.append('companyName', companyName);
+        formData.append('newForm', newFormFile);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", 'http://localhost:8080/DemoApp/write', true);
+        xhr.send(formData);
+
+        this.setState({ saveSuccess: "Saved!" });
+        setTimeout(() => this.setState({ saveSuccess: "" }), 2000);
+    }
+
     render() {
         return (
             (this.props.status === 'main') ?
                 <div>
+                    {
+                        (this.props.data.saveChanges) ?
+                            <div>
+                                < button className="saveChangesBtn" onClick={this.handleSaveChanges}> Save Changes</button>
+                                {this.state.saveSuccess}
+                            </div>
+                            :
+                            null
+                    }
+
                     {this.filterKey('column-1')}
-                </div>
+                </div >
                 :
                 <div>
                     {this.filterKey('column-2')}

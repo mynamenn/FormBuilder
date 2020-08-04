@@ -2,8 +2,9 @@ import React, { useState } from "react"
 import { useDropzone } from "react-dropzone"
 import '../style/index.css';
 
+// Passed props: setImg, img
 function DndImage(props) {
-    const [files, setFiles] = useState([])
+    const [files, setFiles] = useState([props.img])
 
     const { getRootProps, getInputProps } = useDropzone({
         accept: "image/*",
@@ -37,7 +38,11 @@ function DndImage(props) {
     const images = files.map((file) => (
         <div key={file.name}>
             <div>
-                <img src={file.preview} style={{ width: "600px", height: "150px", background: "transparent" }} alt="preview" />
+                {
+                    (props.img !== "") ?
+                        <img src={props.img} style={{ width: "600px", height: "150px", background: "transparent" }} alt="preview" /> :
+                        null
+                }
             </div>
         </div>
     ))
@@ -51,7 +56,8 @@ function DndImage(props) {
                 <p id="dropImageTitle">Drop Image Here &ensp;
                 <img src={folderIcon}
                         width="20" height="20" />
-                    <p id="imageDetails">Image should be cropped to width:600px, height:150px</p>
+                    <p id="imageDetails">Image should be cropped to 600x150
+                    </p>
                 </p>
 
             </div>

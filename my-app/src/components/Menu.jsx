@@ -19,6 +19,7 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import axios from 'axios';
 
 
 const Regex = {
@@ -40,7 +41,13 @@ class Menu extends React.Component {
     data: initialData,
     img: "",
     savedForms: [],
+    companyName: "",
+    currSavedFormIndex: 0
   };
+
+  componentDidMount() {
+    this.handleGetData();
+  }
 
   onDragStart = (event, fieldName) => {
     event.dataTransfer.setData("fieldName", fieldName);
@@ -54,8 +61,9 @@ class Menu extends React.Component {
     this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
+  // Used in newDnd when addFieldBtn is pressed, it updates initialLength also
   btnSetState = (newData) => {
-    this.setState(state => ({ data: newData }));
+    this.setState({ data: newData });
   };
 
 
@@ -73,14 +81,22 @@ class Menu extends React.Component {
     formData.append('newForm', newFormFile);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/DemoApp/add', true);
+    xhr.open("POST", '/DemoApp/formRenderer', true);
     xhr.send(formData);
-
   }
 
+  handleSwitchForms = async (savedForms, img, data, currSavedFormIndex) => {
+    await this.setState({
+      currSavedFormIndex: currSavedFormIndex,
+      savedForms: savedForms,
+      img: img,
+      data: data,
+    });
+  }
 
   setImg = img => {
     this.setState({ img: img });
+    console.log(this.state.img)
   }
 
   onDragEnd = result => {
@@ -158,6 +174,33 @@ class Menu extends React.Component {
     this.setState(state => ({ data: newState }));
   };
 
+  // Get savedForms from doPost
+  handleGetData = () => {
+    // Get query string with parameter formName
+    let link = window.location.href.split('/');
+    // Check if link has all the parameters
+    if (link.length === 4) {
+      let companyName = link[3];
+      var axiosLink = 'http://localhost:8080/DemoApp/formRenderer';
+
+      axios
+        .get(axiosLink, {
+          params: {
+            companyName: companyName,
+            formName: "",
+          }
+        })
+        .then(response => {
+          var splitted = response.data.split("\n");   // [savedForms, ...]
+          this.setState({ savedForms: JSON.parse(splitted[0]) });
+          this.setState({ companyName: companyName });
+        }).catch(error => {
+          console.log(error);
+        })
+    }
+
+  }
+
 
   render() {
 
@@ -185,7 +228,7 @@ class Menu extends React.Component {
 
                 <SaveFormBtn tasksOrder={this.state.data.columns['column-1'].taskIds}
                   img={this.state.img} tasks={this.state.data.tasks}
-                  handleSaveForm={this.handleSaveForm}
+                  handleSaveForm={this.handleSaveForm} initialLength={this.state.data.initialLength}
                 ></SaveFormBtn>
 
               </Toolbar>
@@ -200,7 +243,9 @@ class Menu extends React.Component {
                   variant="permanent"
                   open
                 >
-                  <DrawerElements data={this.state.data} btnSetState={this.btnSetState}></DrawerElements>
+                  <DrawerElements data={this.state.data} btnSetState={this.btnSetState}
+                    handleSwitchForms={this.handleSwitchForms} savedForms={this.state.savedForms}
+                  ></DrawerElements>
                 </Drawer>
               </Hidden>
             </nav>
@@ -212,8 +257,9 @@ class Menu extends React.Component {
 
               <Switch>
                 <Route path="/*" exact>
-                  <DndImage setImg={this.setImg}></DndImage>
-                  <NewDnd status='main' data={this.state.data} btnSetState={this.btnSetState}></NewDnd>
+                  <DndImage setImg={this.setImg} img={this.state.img}></DndImage>
+                  <NewDnd currSavedFormIndex={this.state.currSavedFormIndex} status='main' data={this.state.data} btnSetState={this.btnSetState}
+                    savedForms={this.state.savedForms} img={this.state.img}></NewDnd>
                 </Route>
               </Switch>
 

@@ -27,6 +27,7 @@ const initialData = {
   // Facilitate reordering of the columns
   columnOrder: ['column-1', 'column-2'],
   initialLength: 11,
+  saveChanges: false
 };
 
 

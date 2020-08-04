@@ -213,27 +213,13 @@ select {
     position: relative;
 }
 
-#dropdown-container {
+#dropdown-container, #dropdown-forms-container {
     display: none;
     background-color: #9475cc;
-    padding-left: 10px;
     padding-top: 6px;
     text-align: center;
 }
 
-.dropdown-btn {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 30px;
-    color: #818181;
-    display: block;
-    border: none;
-    background-color: white;
-    width: 100%;
-    text-align: left;
-    cursor: pointer;
-    outline: none;
-}
 
 .sidenav {
     font-family: sans-serif;
@@ -248,12 +234,12 @@ select {
 }
 
 .sidenav a:hover,
-.dropdown-btn:hover {
+.dropdown-fields-btn:hover, .dropdown-forms-btn:hover {
     color: gray;
 }
 
 .sidenav a,
-.dropdown-btn {
+.dropdown-fields-btn, .dropdown-forms-btn {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
@@ -369,4 +355,34 @@ select {
 #imageDetails{
     font-size: 10px;
     font-weight: lighter;
+}
+
+.saveChangesBtn:hover, .savedFormsBtn:hover{
+    background-color: purple;
+}
+
+.saveChangesBtn{
+    background-color: white;
+  border: solid;
+  color: solid;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 4px ;
+  width: 30%;
+}
+
+.savedFormsBtn{
+    background-color: white;
+  border: none;
+  color: solid;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  cursor: pointer;
+  margin: 4px ;
+  width:90%
 }
