@@ -1,12 +1,16 @@
 import React from 'react';
 import Column from './column';
 import { AddFieldBtn } from './AddFieldBtn';
+import Modal from 'react-bootstrap/Modal';
+import { Button } from '@material-ui/core';
 
 // Passed props: status, data, btnSetState, savedForms, currSavedFormIndex, img
 // btnSetState sets data in Menu
+const postLink = 'https://uat.curlec.com/CurlecFormBuilder/DemoApp/write';
 export default class NewDnd extends React.Component {
     state = {
         saveSuccess: "",
+        changedSuccess: ""
     }
 
     // Add new element to fields when submit is pressed
@@ -78,7 +82,9 @@ export default class NewDnd extends React.Component {
     // Post to write servlet
     handleSaveChanges = () => {
         var link = window.location.href.split('/');
-        var companyName = link[3];
+        console.log("handleSaveChanges() link: ", link)
+        var companyName = link[5].substr(1);
+        console.log("handleSaveChanges() companyName: ", companyName)
         var formName = Object.keys(this.props.savedForms[this.props.currSavedFormIndex]['newForm']);
         this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['tasks'] = this.props.data.tasks;
         this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['taskIds'] = this.props.data['columns']['column-1']['taskIds'];
@@ -97,11 +103,37 @@ export default class NewDnd extends React.Component {
         formData.append('newForm', newFormFile);
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", 'http://localhost:8080/DemoApp/write', true);
+        xhr.open("POST", postLink, true);
         xhr.send(formData);
 
         this.setState({ saveSuccess: "Saved!" });
         setTimeout(() => this.setState({ saveSuccess: "" }), 2000);
+    }
+
+    // Post to write servlet after changing published variable to false
+    handleChangeMode = () => {
+        var link = window.location.href.split('/');
+        var companyName = link[5].substr(1);
+        console.log("handleChangeMode() companyName: ", companyName);
+        var formName = Object.keys(this.props.savedForms[this.props.currSavedFormIndex]['newForm']);
+        this.props.savedForms[this.props.currSavedFormIndex]['newForm'][formName]['published'] = false;
+
+        var submit = [];
+        this.props.savedForms.map(form => {
+            submit.push(JSON.stringify(form) + '\n');
+        })
+        const newFormFile = new File(submit, "form.txt",
+            { type: 'text/plain' });
+
+        const formData = new FormData();
+        formData.append('companyName', companyName);
+        formData.append('newForm', newFormFile);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", postLink, true);
+        xhr.send(formData);
+
+        this.setState({ changedSuccess: "Changed!" });
     }
 
     render() {
@@ -109,10 +141,20 @@ export default class NewDnd extends React.Component {
             (this.props.status === 'main') ?
                 <div>
                     {
+                        // Ensure save changes button and change mode button will only show in saved forms
                         (this.props.data.saveChanges) ?
                             <div>
-                                < button className="saveChangesBtn" onClick={this.handleSaveChanges}> Save Changes</button>
-                                {this.state.saveSuccess}
+                                {
+                                    (this.props.savedForms[this.props.currSavedFormIndex]["newForm"][Object.keys(this.props.savedForms[this.props.currSavedFormIndex]["newForm"])]["published"]) ?
+                                        <div>
+                                            < button className="saveChangesBtn" onClick={this.handleChangeMode}>Change Mode</button>
+                                            {this.state.changedSuccess}
+                                        </div> :
+                                        <div>
+                                            < button className="saveChangesBtn" onClick={this.handleSaveChanges}> Save Changes</button>
+                                            {this.state.saveSuccess}
+                                        </div>
+                                }
                             </div>
                             :
                             null

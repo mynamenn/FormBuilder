@@ -35,6 +35,10 @@ const bankList = ['Affin Bank', 'CIMB Clicks', 'Bank Islam', 'Hong Leong Bank',
   'HSBC Bank', 'Maybank2U', 'Maybank2U', 'OCBC Bank', 'Public Bank', 'SBI Bank A'
   , 'SBI Bank B', 'SBI Bank C']
 
+const companyNameIndex = 5;
+
+
+
 class Menu extends React.Component {
   state = {
     mobileOpen: false,
@@ -68,21 +72,28 @@ class Menu extends React.Component {
 
 
   // Append newForm to savedForms
+  // Posting data to renderer servlet
   handleSaveForm = (newForm) => {
-    var newState = [...this.state.savedForms, newForm];
+    //['https:', '', 'uat.curlec.com', 'CurlecFormBuilder', 'formBuilder_build']
     let link = window.location.href.split('/');
-    let companyName = link[3];
+    if (link.length === companyNameIndex + 1) {
+      // Remove ? character
+      let companyName = link[companyNameIndex].substr(1);
 
-    const newFormFile = new File([JSON.stringify({ newForm, Regex, bankList })], "form.txt",
-      { type: 'text/plain' });
+      if (companyName !== null) {
+        const newFormFile = new File([JSON.stringify({ newForm, Regex, bankList })], "form.txt",
+          { type: 'text/plain' });
 
-    const formData = new FormData();
-    formData.append('companyName', companyName);
-    formData.append('newForm', newFormFile);
+        const formData = new FormData();
+        formData.append('companyName', companyName);
+        formData.append('newForm', newFormFile);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '/DemoApp/formRenderer', true);
-    xhr.send(formData);
+        var xhr = new XMLHttpRequest();
+        console.log("Posting to https://uat.curlec.com/CurlecFormBuilder/DemoApp/renderer, companyName is ", companyName);
+        xhr.open("POST", 'https://uat.curlec.com/CurlecFormBuilder/DemoApp/renderer', true);
+        xhr.send(formData);
+      }
+    }
   }
 
   handleSwitchForms = async (savedForms, img, data, currSavedFormIndex) => {
@@ -177,11 +188,14 @@ class Menu extends React.Component {
   // Get savedForms from doPost
   handleGetData = () => {
     // Get query string with parameter formName
+    // ['https:', '', 'uat.curlec.com', 'CurlecFormBuilder', 'formBuilder_build']
+    // https://uat.curlec.com/CurlecFormBuilder/formBuilder_build
     let link = window.location.href.split('/');
     // Check if link has all the parameters
-    if (link.length === 4) {
-      let companyName = link[3];
-      var axiosLink = 'http://localhost:8080/DemoApp/formRenderer';
+    if (link.length === companyNameIndex + 1) {
+      let companyName = link[companyNameIndex].substr(1);
+      console.log("handleGetData() companyName: ", companyName);
+      var axiosLink = 'https://uat.curlec.com/CurlecFormBuilder/DemoApp/renderer';
 
       axios
         .get(axiosLink, {

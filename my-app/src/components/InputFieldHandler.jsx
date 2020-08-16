@@ -67,6 +67,8 @@ export default function InputFieldHandler({ content, type, inputField, listValue
     } else if (inputField === 'DropDownList') {
         return (
             <div>
+                <label htmlFor={content} className='item-title'>{content}*</label>
+                <br />
                 <select id={content} name={content} className="fieldSelectBox" required>
                     {listValues.map((value) =>
                         <option value={value}>{value}</option>

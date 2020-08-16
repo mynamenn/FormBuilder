@@ -69,7 +69,7 @@ export default function SaveFormBtn(props) {
                     width="25" height="25" />
             </Button>
 
-            <Modal show={open} onHide={handleClose}>
+            <Modal id="modal" show={open} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Save Form</Modal.Title>
                 </Modal.Header>

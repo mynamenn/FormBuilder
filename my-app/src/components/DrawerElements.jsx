@@ -78,12 +78,10 @@ export default class DrawerElements extends React.Component {
             (this.props.savedForms !== []) ?
               this.props.savedForms.map((form, index) =>
                 // Show publish equals false forms
-                (!this.props.savedForms[index]["newForm"][Object.keys(this.props.savedForms[index]["newForm"])]["published"]) ?
-                  <div>
-                    <button key={index} onClick={this.switchForm} value={index} className="savedFormsBtn">{Object.keys(form["newForm"])}</button>
-                    <br />
-                  </div>
-                  : null
+                <div>
+                  <button key={index} onClick={this.switchForm} value={index} className="savedFormsBtn">{Object.keys(form["newForm"])}</button>
+                  <br />
+                </div>
               ) : null
           }
         </div>

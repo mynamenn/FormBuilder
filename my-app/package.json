@@ -1,6 +1,7 @@
 {
   "name": "my-app",
-  "proxy": "http://localhost:8080",
+  "homepage": "/CurlecFormBuilder/formBuilder",
+  "proxy": "https://uat.curlec.com/CurlecFormBuilder/DemoApp",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -57,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
   }
 }

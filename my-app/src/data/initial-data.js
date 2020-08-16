@@ -11,6 +11,7 @@ const initialData = {
     'task-9': { id: 'task-9', content: 'Email', stats: 'main', type: 'Email', inputField: 'TextField', listValues: [] },
     'task-10': { id: 'task-10', content: 'Business Model', stats: 'main', type: 'String', inputField: 'BusinessModel', listValues: [] },
     'task-11': { id: 'task-11', content: 'ID Type', stats: 'main', type: 'String', inputField: 'idType', listValues: [] },
+    'task-12': { id: 'task-12', content: 'Effective Date', stats: 'Sidebar', type: 'String', inputField: 'Date', listValues: [] },
   },
   columns: {
     'column-1': {
@@ -21,12 +22,12 @@ const initialData = {
     'column-2': {
       id: 'column-2',
       title: 'Sidebar',
-      taskIds: ['task-5', 'task-6'],
+      taskIds: ['task-5', 'task-6', 'task-12'],
     },
   },
   // Facilitate reordering of the columns
   columnOrder: ['column-1', 'column-2'],
-  initialLength: 11,
+  initialLength: 12,
   saveChanges: false
 };
 
